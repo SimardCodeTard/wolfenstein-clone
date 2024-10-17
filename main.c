@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "level/level.c"
+#include "engine/engine.c"
 
 int main() {
-    read_level("0");
+    run();
     return 0;
 }

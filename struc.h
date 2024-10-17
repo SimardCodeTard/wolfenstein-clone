@@ -20,7 +20,13 @@ typedef struct {
 typedef struct {
     wall *walls;
     int wall_count;
+    vec2 player_pos;
     char *name;
 } level;
+
+typedef struct {
+    vec2 pos;
+    float angle;
+} player;
 
 #endif
