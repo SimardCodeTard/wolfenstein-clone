@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "level.h"
-#include "struc.h"
-#include "file.c"
+#include "../struc.h"
+#include "../file/file.c"
 
-#define LEVEL_PATH "levels/"
+#define LEVEL_PATH "data/levels/"
 #define LEVEL_MAX_WALLS 100
 #define LEVEL_MAX_WALL_DATA_SIZE (3 * 2 + 2 + 1)  * 2 // 3 digits for each x and y, 2 commas, 1 semicolon and 1 null terminator for each point
 #define LEVEL_NAME_IDENTIFIER "name:\n"

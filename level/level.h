@@ -1,4 +1,4 @@
-#include "struc.h"
+#include "../struc.h"
 
 level read_level(char* name);
 int get_level_wall_count(char* level_data);

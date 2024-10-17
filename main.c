@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "lib/level.c"
+#include "level/level.c"
 
 int main() {
     read_level("0");
