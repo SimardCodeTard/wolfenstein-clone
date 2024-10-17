@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "lib/level.c"
 
 int main() {
-    printf("Hello, World!\n");
+    read_level("0");
     return 0;
 }
