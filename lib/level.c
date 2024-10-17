@@ -10,6 +10,7 @@
 #define LEVEL_MAX_WALL_DATA_SIZE (3 * 2 + 2 + 1)  * 2 // 3 digits for each x and y, 2 commas, 1 semicolon and 1 null terminator for each point
 #define LEVEL_NAME_IDENTIFIER "name:\n"
 #define LEVEL_WALLS_IDENTIFIER "walls:\n"
+#define LEVEL_NAME_MAX_SIZE 50
 
 level read_level(char *name) {
     printf("=======================================\n");
@@ -26,8 +27,6 @@ level read_level(char *name) {
         printf("Failed to read level file\n");
         exit(1);
     }
-
-    printf("Level data:\n%s\n", level_data);
     
     char *level_name = get_level_name(level_data);
 
@@ -39,7 +38,6 @@ level read_level(char *name) {
         free(level_data);
         exit(1);
     }
-
 
     char **walls_data_lines = get_walls_data_lines(walls_data, wall_count);
     if(walls_data_lines == NULL) {
@@ -87,14 +85,14 @@ char* get_level_name(char *level_data) {
 
     int name_index = found - level_data + strlen(LEVEL_NAME_IDENTIFIER);
 
-    char *name = malloc(sizeof(char) * 50);
+    char *name = malloc(sizeof(char) * LEVEL_NAME_MAX_SIZE);
     if (name == NULL) {
         printf("Memory allocation failed for level name\n");
         exit(1);
     }
 
     int i = 0;
-    while (level_data[name_index + i] != '\n') {
+    while (level_data[name_index + i] != '\n' && i < LEVEL_NAME_MAX_SIZE - 1) {
         name[i] = level_data[name_index + i];
         i++;
     }
@@ -208,7 +206,6 @@ wall *get_level_walls(char **walls_data_lines, int wall_count) {
     char *wall_pos_x;
     char *wall_pos_y;
     for (int i = 0; i < wall_count; i++) {
-        printf("Parsing wall %s\n", walls_data_lines[i]);
         wall_pos1_str = strtok(walls_data_lines[i], ";");
 
         if (wall_pos1_str == NULL) {
