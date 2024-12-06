@@ -23,8 +23,6 @@ void run() {
     while (running) {
         handle_events(&running, &player);
 
-        printf("Player position: (%d, %d)\n", player.pos.x, player.pos.y);
-
         reset_view(renderer);
 
         cast_rays(player, level.walls, level.wall_count, renderer);
@@ -114,33 +112,7 @@ int ray_intersects_wall(vec2 ray_origin, vec2 ray_direction, wall wall, float *d
 }
 
 void cast_rays(player player, wall *walls, int wall_count, SDL_Renderer *renderer) {
-    float ray_angle;
-    float ray_distance;
-    float min_distance;
-    wall *closest_wall;
-
-    for (int col = 0; col < WINDOW_WIDTH; col++) {
-        ray_angle = (player.angle - FOV / 2) + (col * FOV / WINDOW_WIDTH);
-        vec2 ray_direction = {cos(ray_angle), sin(ray_angle)};
-
-        min_distance = INFINITY;
-        closest_wall = NULL;
-
-        for (int i = 0; i < wall_count; i++) {
-            if (ray_intersects_wall(player.pos, ray_direction, walls[i], &ray_distance)) {
-                if (ray_distance < min_distance) {
-                    min_distance = ray_distance;
-                    closest_wall = &walls[i];
-                }
-            }
-        }
-
-        if (closest_wall != NULL) {
-            int line_height = (int)(WINDOW_HEIGHT / min_distance);
-
-            draw_column(col, line_height, renderer);
-        }
-    }
+    vec2 ray_angle;
 }
 
 void draw_column(int col, int line_height, SDL_Renderer *renderer) {
