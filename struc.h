@@ -18,10 +18,12 @@ typedef struct {
 } wall;
 
 typedef struct {
-    wall *walls;
-    int wall_count;
-    vec2 player_pos;
-    char *name;
+    vec2 position;
+    int value;
+} cell;
+
+typedef struct {
+    cell** cells;
 } level;
 
 typedef struct {
