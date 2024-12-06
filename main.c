@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include "engine/engine.c"
+#include "./level/level.c"
 
-int main() {
-    run();
+int main () {
+    read_level("0");
     return 0;
 }
